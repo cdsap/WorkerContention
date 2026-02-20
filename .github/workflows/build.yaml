@@ -27,7 +27,7 @@ jobs:
       - name: Set up JDK version
         uses: actions/setup-java@v4
         with:
-          java-version-file: .github/.java-version
+          java-version: 23
           distribution: 'adopt'
 
       - name: Processs Watcher 
