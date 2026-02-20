@@ -13,6 +13,6 @@ plugins {
 
 allprojects {
     tasks.withType<Test>().configureEach {
-        maxParallelForks = 4
+        maxParallelForks = 1
     }
 }
