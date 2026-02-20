@@ -1,0 +1,42 @@
+name: CI Checks
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+      - develop
+   
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  code_formatting:
+    name: Code Formatting
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # required dueasng Spoaxxsaaatless ratchetFrom
+          submodules: recursive
+
+      - name: Set up JDK version
+        uses: actions/setup-java@v4
+        with:
+          java-version-file: .github/.java-version
+          distribution: 'adopt'
+
+      - name: Processs Watcher 
+        uses: cdsap/build-process-watcher@main
+        with:
+            remote_monitoring: true
+          
+
+      - name: Run Code Formatting Checks
+        run: ./gradlew testDebugUnitTest
+        env:
+          DEVELOCITY_ACCESS_KEY: ${{ secrets.DV_ACCESS_KEY }}
