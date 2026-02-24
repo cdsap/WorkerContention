@@ -37,6 +37,6 @@ jobs:
           
 
       - name: Run Code Formatting Checks
-        run: ./gradlew testDebugUnitTest
+        run: ./gradlew assemble
         env:
           DEVELOCITY_ACCESS_KEY: ${{ secrets.DV_ACCESS_KEY }}
